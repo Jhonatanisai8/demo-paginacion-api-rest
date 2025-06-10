@@ -2,6 +2,10 @@ package com.isai.demo_paginacion_api_rest.controllers;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +22,14 @@ public class LibroController {
 
     private final LibroService libroService;
 
-    @RequestMapping(path = "/listar",method = RequestMethod.GET)
+    @RequestMapping(path = "/listar", method = RequestMethod.GET)
     public List<Libro> obtenerLibros() {
         return libroService.listarLibros();
+    }
+
+    @GetMapping(path = "/paginados")
+    public Page<Libro> listarLibrosPaginados() {
+        final Pageable pageable = PageRequest.of(0, 10);
+        return libroService.listarLibrosPaginados(pageable);
     }
 }

@@ -2,6 +2,8 @@ package com.isai.demo_paginacion_api_rest.services.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.isai.demo_paginacion_api_rest.models.Libro;
@@ -19,6 +21,11 @@ public class LibroService implements LibroCrud {
     @Override
     public List<Libro> listarLibros() {
         return libroRepository.findAll();
+    }
+
+    @Override
+    public Page<Libro> listarLibrosPaginados(Pageable pageable) {
+        return libroRepository.findAll(pageable);
     }
 
 }
