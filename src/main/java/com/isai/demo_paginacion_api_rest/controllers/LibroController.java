@@ -37,7 +37,12 @@ public class LibroController {
 
     @GetMapping(path = "/paginados/ordenados")
     public Page<Libro> listarLibrosPaginadosOrdenados() {
-        final Pageable pageable = PageRequest.of(0, 10,Sort.by(Direction.DESC,"titulo"));
+        final Pageable pageable = PageRequest.of(0, 10, Sort.by(Direction.DESC, "titulo"));
+        return libroService.listarLibrosPaginados(pageable);
+    }
+
+    @GetMapping(path = "/paginados/ordenados/parametros")
+    public Page<Libro> listarLibrosPaginadosOrdenadosParametros(Pageable pageable) {
         return libroService.listarLibrosPaginados(pageable);
     }
 }
