@@ -1,0 +1,25 @@
+package com.isai.demo_paginacion_api_rest.controllers;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.isai.demo_paginacion_api_rest.models.Libro;
+import com.isai.demo_paginacion_api_rest.services.impl.LibroService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequestMapping(path = "/api/v1/libros")
+@RequiredArgsConstructor
+public class LibroController {
+
+    private final LibroService libroService;
+
+    @RequestMapping(path = "/listar",method = RequestMethod.GET)
+    public List<Libro> obtenerLibros() {
+        return libroService.listarLibros();
+    }
+}
